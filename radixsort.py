@@ -1,11 +1,10 @@
-#python2.6 <
-#based on wikipedia source for radix sort
+# based on wikipedia source for radix sort, some of the comments is code from the original
 
-from math import log
+# from math import log
 
-def getDigit(num, base, digit_num):
+# def getDigit(num, base, digit_num):
     # pulls the selected digit
-    return (num // base ** digit_num) % base
+    # return (num // base ** digit_num) % base
 
 def getChar(url, digit_num):
     if digit_num >= len(url):
@@ -21,7 +20,7 @@ def split(a_list, base, digit_num):
     buckets = makeBlanks(base)
     for num in a_list:
         # append the number to the list selected by the digit
-        buckets[getChar(num, digit_num)].append(num)#getDigit(num, base, digit_num)].append(num)
+        buckets[getChar(num, digit_num)].append(num) # getDigit(num, base, digit_num)].append(num)
     return buckets
 
 # concatenate the lists back in order for the next step
@@ -35,7 +34,7 @@ def maxAbs(a_list):
     # largest abs value element of a list
     return max(abs(num) for num in a_list)
 
-def radixSort(a_list, base):
+def radixSort(a_list): # , base):
     # there are as many passes as there are digits in the longest number
     # passes = int(log(maxAbs(a_list), base) + 1)
     try:
@@ -43,7 +42,7 @@ def radixSort(a_list, base):
         base = 256
         new_list = list(a_list)
         for digit_num in range(passes):
-            new_list = merge(split(new_list, base, digit_num))
+            new_list = merge(split(new_list, base, passes - digit_num - 1))
         return new_list
     except ValueError:
         return []
