@@ -55,10 +55,10 @@ def controller():
                help="The FILE from which we will read", metavar="FILE")
   p.add_option('--sort-alg', '-s', dest='algorithm',
                default=1, help='The type of sorting algorithm to use, '
-                                  '1 = quick sort, '
-                                  '2 = radix sort, '
-                                  '3 = heap sort, '
-                                  '4 = selection sort',
+                                  '1 = selection sort, '
+                                  '2 = heap sort, '
+                                  '3 = merge sort, '
+                                  '4 = radix sort',
                metavar='ALG')
   p.add_option('--output', '-o', dest='output',
                help="The sorted output will be printed to OUT.",
