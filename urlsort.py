@@ -47,7 +47,9 @@ def read_file(f):
   return urls
 
 def controller():
-  p = optparse.OptionParser(description="URL Sorter",
+  p = optparse.OptionParser(description="URL Sorter. Takes in a file, "
+                                        "sorts the URLs and then writes them "
+                                        "to a file",
                           prog='urlsort.py',
                           version='0.1',
                           usage='%prog -f [file] -s [sorting algorithm]')
