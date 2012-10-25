@@ -6,10 +6,7 @@ import optparse
 import random
 import sys
 import string
-import selectionsort
-import heapsort
-import mergesort
-import radixsort
+from sorters import *
 
 def read_file(f):
   urls = []
