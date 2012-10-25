@@ -34,7 +34,7 @@ def controller():
   p.add_option('--file', '-f', dest="filename",
                help="The FILE from which we will read", metavar="FILE")
   p.add_option('--sort-alg', '-s', dest='algorithm',
-               default=1, help='The type of sorting algorithm to use, '
+               default=1, help='The type of sorting algorithm to use (defaults to one), '
                                   '1 = selection sort, '
                                   '2 = heap sort, '
                                   '3 = merge sort, '
@@ -45,6 +45,11 @@ def controller():
                metavar="OUT")
   (opts, args) = p.parse_args()
   return (p, opts, args)
+
+def handle_io_exception(f, ex):
+    print("I/O error({1}) -- \"{0}\" : {2}".format(f, ex.errno, ex.strerror))
+    sys.exit(1)
+
 
 def main():
   '''
@@ -74,7 +79,10 @@ def main():
   try:
     f = open(filename, 'r')
     unsorted = read_file(f)
-    
+  except IOError as e:
+    handle_io_exception(filename, e) 
+
+  try:
     '''
     Grab the algorithm from the list of imported modules.  Why this order?
     Because we can!
@@ -86,7 +94,7 @@ def main():
     for url in sorted_list:
       out.write(url + "\n")
   except IOError as e:
-    print("I/O error({0}): {1}".format(e.errno, e.strerror))
+    handle_io_exception(output, e)
 
 if __name__ == "__main__":
   main()
