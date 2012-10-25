@@ -34,7 +34,7 @@ def maxAbs(a_list):
     # largest abs value element of a list
     return max(abs(num) for num in a_list)
 
-def radixSort(a_list): # , base):
+def sort(a_list): # , base):
     # there are as many passes as there are digits in the longest number
     # passes = int(log(maxAbs(a_list), base) + 1)
     try:
