@@ -73,10 +73,10 @@ def main():
 
     out = open(output, 'w')
     for url in sorted_list:
-      print>>out, url
+      out.write(url + "\n")
       
-  except IOError:
-    print('Unable to open file')
+  except IOError as e:
+    print("I/O error({0}): {1}".format(e.errno, e.strerror))
 
 if __name__ == "__main__":
   main()
