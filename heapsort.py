@@ -1,6 +1,6 @@
 from heapq import *
 
-def sort(self, lst):
+def sort(lst):
   heap = list(lst)
   heapify(heap)
   for i in range(len(lst)):
