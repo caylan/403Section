@@ -8,7 +8,7 @@ Usage:
 def sort(lst):
   if len(lst) <= 1:
     return lst
-  mid = len(lst) / 2
+  mid = len(lst) // 2
   return merge(sort(lst[:mid]), sort(lst[mid:]))
   
 
