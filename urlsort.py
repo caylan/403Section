@@ -66,22 +66,22 @@ def controller():
                help="The sorted output will be printed to OUT.",
                metavar="OUT")
   (opts, args) = p.parse_args()
-  if not opts.filename or not opts.algorithm or not opts.output:
-    p.print_help()
+  return (p, opts, args)
 
 def main():
-  controller()
-  argv = sys.argv
-  if len(argv) < 3:
-    print USAGE
-    sys.exit()
-  
-  filename = argv[1]
-  algorithm = int(argv[2])
-  
+  (parser, opts, args) = controller()
+  if not opts.filename or not opts.algorithm or not opts.output:
+    parser.print_help()
+    sys.exit(1)
+  try:
+    algorithm = int(opts.algorithm)
+  except:
+    print("ERROR: invalid sorting algorithm, using default")
+    algorithm = 1
+
   if algorithm < 1 or algorithm > 4:
-    print USAGE
-    sys.exit()
+    parser.print_help()
+    sys.exit(1)
     
   try:
     f = open(filename, 'r')
