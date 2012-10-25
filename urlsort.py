@@ -1,9 +1,5 @@
 """
-Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]
-1: Selection sort
-2: Heap sort
-3: Merge sort
-4: Radix sort
+Usage: urlsort.py -f [file] -s [sorting algorithm]
 """
 
 import optparse
