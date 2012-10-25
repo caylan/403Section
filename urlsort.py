@@ -1,9 +1,9 @@
 """
 Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]
-1: blasort
-2: blablasort
-3: blablablasort
-4: blablablablasort
+1: Selection sort
+2: Heap sort
+3: Merge sort
+4: Radix sort
 """
 
 USAGE = 'Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]'
@@ -12,6 +12,10 @@ import optparse
 import random
 import sys
 import string
+import selectionsort
+import heapsort
+import mergesort
+import radixsort
 
 def url_generator(size=20, chars=string.ascii_lowercase + string.digits):
   return ''.join(random.choice(chars) for x in range(size))
@@ -84,14 +88,18 @@ def main():
     print unsorted
     
     if algorithm == 1:
-      print 'TODO'
+      sorted_list = selectionsort.selection_sort(unsorted)
     elif algorithm == 2:
-      print 'TODO 2'
+      sorted_list = heapsort.sort(unsorted)
     elif algorithm == 3:
-      print 'TODO 3'  
+      sorted_list = mergesort.sort(unsorted)
     else:
-      print 'TODO 4'    
-    
+      sorted_list = radixsort.radixSort(unsorted)
+
+    out = open('output.txt', 'w')
+    for url in sorted_list:
+      print>>out, url
+      
   except IOError:
     print 'Unable to open file'
 
