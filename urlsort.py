@@ -73,11 +73,14 @@ def main():
   if not opts.filename or not opts.algorithm or not opts.output:
     parser.print_help()
     sys.exit(1)
+
   try:
     algorithm = int(opts.algorithm)
   except:
     print("ERROR: invalid sorting algorithm, using default")
     algorithm = 1
+
+  filename = opts.filename
 
   if algorithm < 1 or algorithm > 4:
     parser.print_help()
