@@ -1,5 +1,5 @@
 """
-Usage: urlsort.py -f [file] -s [sorting algorithm]
+Usage: urlsort.py -f [FILE] -s [sorting algorithm] -o [OUT]
 """
 
 import optparse
@@ -26,7 +26,7 @@ def controller():
                                         "to a file",
                           prog='urlsort.py',
                           version='0.1',
-                          usage='%prog -f [file] -s [sorting algorithm]')
+                          usage='%prog -f [FILE] -s [sorting algorithm] -o [OUT]')
   p.add_option('--file', '-f', dest="filename",
                help="The FILE from which we will read", metavar="FILE")
   p.add_option('--sort-alg', '-s', dest='algorithm',
