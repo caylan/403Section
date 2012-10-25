@@ -33,7 +33,7 @@ def controller():
                                   '3 = merge sort, '
                                   '4 = radix sort',
                metavar='ALG')
-  p.add_option('--output', '-o', dest='output',
+  p.add_option('--output', '-o', dest='output', default='output.txt',
                help="The sorted output will be printed to OUT.",
                metavar="OUT")
   (opts, args) = p.parse_args()
