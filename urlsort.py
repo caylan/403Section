@@ -79,7 +79,7 @@ def main():
     algorithm = 1
 
   filename = opts.filename
-  out = opts.output
+  output = opts.output
 
   if algorithm < 1 or algorithm > 4:
     parser.print_help()
@@ -100,12 +100,12 @@ def main():
     else:
       sorted_list = radixsort.radixSort(unsorted)
 
-    out = open('output.txt', 'w')
+    out = open(output, 'w')
     for url in sorted_list:
-      print>>out, url
+      print(out, url)
       
   except IOError:
-    print 'Unable to open file'
+    print('Unable to open file')
 
 if __name__ == "__main__":
   main()
