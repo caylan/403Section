@@ -6,8 +6,6 @@ Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]
 4: Radix sort
 """
 
-USAGE = 'Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]'
-
 import optparse
 import random
 import sys
