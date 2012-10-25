@@ -8,9 +8,10 @@ Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]
 
 USAGE = 'Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]'
 
+import optparse
+import random
 import sys
 import string
-import random
 
 def url_generator(size=20, chars=string.ascii_lowercase + string.digits):
   return ''.join(random.choice(chars) for x in range(size))
@@ -41,7 +42,29 @@ def read_file(f):
       urls.append(url)
   return urls
 
+def controller():
+  p = optparse.OptionParser(description="URL Sorter",
+                          prog='urlsort.py',
+                          version='0.1',
+                          usage='%prog -f [file] -s [sorting algorithm]')
+  p.add_option('--file', '-f', dest="filename",
+               help="The FILE from which we will read", metavar="FILE")
+  p.add_option('--sort-alg', '-s', dest='algorithm',
+               default=1, help='The type of sorting algorithm to use, '
+                                  '1 = quick sort, '
+                                  '2 = radix sort, '
+                                  '3 = heap sort, '
+                                  '4 = selection sort',
+               metavar='ALG')
+  p.add_option('--output', '-o', dest='output',
+               help="The sorted output will be printed to OUT.",
+               metavar="OUT")
+  (opts, args) = p.parse_args()
+  if not opts.filename or not opts.algorithm or not opts.output:
+    p.print_help()
+
 def main():
+  controller()
   argv = sys.argv
   if len(argv) < 3:
     print USAGE
