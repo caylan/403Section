@@ -79,6 +79,7 @@ def main():
     algorithm = 1
 
   filename = opts.filename
+  out = opts.output
 
   if algorithm < 1 or algorithm > 4:
     parser.print_help()
