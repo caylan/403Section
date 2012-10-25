@@ -9,32 +9,10 @@ Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]
 USAGE = 'Usage: python urlsort.py [filename] [sorting algorithm: (1-4)]'
 
 import sys
-import string
-import random
 import selectionsort
 import heapsort
 import mergesort
 import radixsort
-
-def url_generator(size=20, chars=string.ascii_lowercase + string.digits):
-  return ''.join(random.choice(chars) for x in range(size))
-
-def list_make():
-        thelist = []
-        for x in range(5):
-                thelist.append(url_generator())
-        thefile = open("output.txt", 'w')
-        for item in thelist:
-                thefile.write("www.%s.com\n" % item)
-
-def test_list():
-        f = open("output.txt", 'r')
-        list_sorted = read_file(f)
-        working = "working"
-        for x in range(len(list_sorted)-1):
-                if list_sorted[x] > list_sorted[x+1]:
-                        working = "not working"
-        print(working)
 
 def read_file(f):
   urls = []
@@ -76,7 +54,7 @@ def main():
     out = open('output.txt', 'w')
     for url in sorted_list:
       print>>out, url
-      
+
   except IOError:
     print 'Unable to open file'
 
