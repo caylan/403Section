@@ -1,4 +1,4 @@
-def selection_sort(lst):
+def sort(lst):
     n = len(lst)
     for i in range(n):
         low = i

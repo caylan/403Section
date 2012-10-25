@@ -61,16 +61,10 @@ def main():
   try:
     f = open(filename, 'r')
     unsorted = read_file(f)
-    
-    if algorithm == 1:
-      sorted_list = selectionsort.selection_sort(unsorted)
-    elif algorithm == 2:
-      sorted_list = heapsort.sort(unsorted)
-    elif algorithm == 3:
-      sorted_list = mergesort.sort(unsorted)
-    else:
-      sorted_list = radixsort.radixSort(unsorted)
 
+    alg_list = [selectionsort, heapsort, mergesort, radixsort]
+    sorter = alg_list[algorithm - 1]
+    sorted_list = sorter.sort(unsorted)
     out = open(output, 'w')
     for url in sorted_list:
       out.write(url + "\n")
