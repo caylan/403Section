@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Usage: urlsort.py -f [FILE] -s [sorting algorithm] -o [OUT]
 """
