@@ -9,6 +9,9 @@ import string
 from sorters import *
 
 def read_file(f):
+  '''
+  Reads in a file line by line, creating an array of strings.
+  '''
   urls = []
   url = ''
   for line in f:
@@ -18,6 +21,10 @@ def read_file(f):
   return urls
 
 def controller():
+  '''
+  Parses the command line arguments and returns the newly created parser,
+  the arguments that have been parsed, and the options that have been parsed.
+  '''
   p = optparse.OptionParser(description="URL Sorter. Takes in a file, "
                                         "sorts the URLs and then writes them "
                                         "to a file",
@@ -40,6 +47,12 @@ def controller():
   return (p, opts, args)
 
 def main():
+  '''
+  Takes in the command line arguments, selects a sorter,
+  and then sorts the URLs.  After they've been sorted, the 
+  URLs are written out to a file the user has selected (else
+  the default file).
+  '''
   (parser, opts, args) = controller()
   if not opts.filename or not opts.algorithm or not opts.output:
     parser.print_help()
@@ -61,14 +74,17 @@ def main():
   try:
     f = open(filename, 'r')
     unsorted = read_file(f)
-
+    
+    '''
+    Grab the algorithm from the list of imported modules.  Why this order?
+    Because we can!
+    '''
     alg_list = [selectionsort, heapsort, mergesort, radixsort]
     sorter = alg_list[algorithm - 1]
     sorted_list = sorter.sort(unsorted)
     out = open(output, 'w')
     for url in sorted_list:
       out.write(url + "\n")
-      
   except IOError as e:
     print("I/O error({0}): {1}".format(e.errno, e.strerror))
 
