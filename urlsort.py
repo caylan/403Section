@@ -69,8 +69,6 @@ def main():
     f = open(filename, 'r')
     unsorted = read_file(f)
     
-    print unsorted
-    
     if algorithm == 1:
       sorted_list = selectionsort.selection_sort(unsorted)
     elif algorithm == 2:
@@ -82,7 +80,7 @@ def main():
 
     out = open(output, 'w')
     for url in sorted_list:
-      print(out, url)
+      print>>out, url
       
   except IOError:
     print('Unable to open file')
