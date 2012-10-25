@@ -1,4 +1,0 @@
-http://google.com
-http://apple.com
-http://facebook.com/6
-http://facebook.com/1
