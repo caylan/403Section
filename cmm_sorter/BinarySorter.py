@@ -7,17 +7,7 @@ the node.getSorted method to sort the urls.
 
 @author: hunlan
 '''
-from sectionproject.sorter.Sorter import Sorter
 
-class BinarySorter(Sorter):
-    @staticmethod
-    def sort(urls):
-        node = _Node(urls.pop())
-        for url in urls:
-            node.insert(url)
-            
-        return node.getSorted()
-    
 '''
 private node class
 '''
@@ -62,3 +52,10 @@ class _Node:
         if self.right:
             ret.extend(self.right.getSorted())
         return ret
+
+def sort(urls):
+    node = _Node(urls.pop())
+    for url in urls:
+        node.insert(url)
+        
+    return node.getSorted()

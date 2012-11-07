@@ -7,7 +7,9 @@ import optparse
 import random
 import sys
 import string
+
 from sorters import *
+from cmm_sorter import *  # change my mood's sorting algorithms
 
 def read_file(f):
   '''
@@ -39,7 +41,12 @@ def controller():
                                   '1 = selection sort, '
                                   '2 = heap sort, '
                                   '3 = merge sort, '
-                                  '4 = radix sort',
+                                  '4 = radix sort. '
+                                  'Change My Mood sorters: '
+                                  '5 = binary sort, '
+                                  '6 = heap sort, '
+                                  '7 = insertion sort, '
+                                  '8 = merge sort',
                metavar='ALG')
   p.add_option('--output', '-o', dest='output', default='output.txt',
                help="The sorted output will be printed to OUT (defaults to output.txt).",
@@ -73,7 +80,7 @@ def main():
   filename = opts.filename
   output = opts.output
 
-  if algorithm < 1 or algorithm > 4:
+  if algorithm < 1 or algorithm > 8:
     parser.print_help()
     sys.exit(1)
     
@@ -88,7 +95,9 @@ def main():
     Grab the algorithm from the list of imported modules.  Why this order?
     Because we can!
     '''
-    alg_list = [selectionsort, heapsort, mergesort, radixsort]
+    alg_list = [selectionsort, heapsort, mergesort, radixsort,
+                BinarySorter, HeapSorter,
+                InsertionSorter, MergeSorter,]
     sorter = alg_list[algorithm - 1]
     sorted_list = sorter.sort(unsorted)
     out = open(output, 'w')
