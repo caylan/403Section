@@ -33,7 +33,12 @@ def controller():
                                         "to a file",
                           prog='urlsort.py',
                           version='0.1',
-                          usage='%prog -f [FILE] -s [sorting algorithm] -o [OUT]')
+                          usage='%prog -v [int] -f [FILE] -s [sorting algorithm] -o [OUT]')
+  p.add_option('--valid', '-v', dest='int', default=0,
+               help='The type of URL validation to use (defaults to zero), '
+               '0 = all URLs, '
+               '1 = valid URLs, '
+               '2 = invalid URLs')
   p.add_option('--file', '-f', dest="filename",
                help="The FILE from which we will read", metavar="FILE")
   p.add_option('--sort-alg', '-s', dest='algorithm',
