@@ -77,9 +77,10 @@ __regex = u"^\
     ?:/[^\s]*\
 )?$".replace(u" ", u"")  # Remove the formatting spaces.
 
-__regex_c = re.compile(__regex, re.U)  # Compile the regex in Unicode format.
+__regex_c = re.compile(__regex, re.U|re.I)  # ignore case; use unicode.
 
 def is_valid_url(url):
     match = re.match(__regex_c, url)
-    print(match.group("authority"))
+    if match is not None:
+        print(match.group("authority"))
     return bool(match)
