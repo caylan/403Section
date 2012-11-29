@@ -75,11 +75,17 @@ __regex = u"^\
     ?P<port>:\d{2,5}\
 )?(\
     (\
-        ?P<path>/[^\s#]*\
-    )?(\
-        ?P<fragment>#[^\s&\?]*\
-    )?(\
-        ?P<params>(&|\?)[^\s]*\
+        (\
+            ?P<path>/[^\s#]*\
+        )(\
+            ?P<fragment>#(\
+                ?P<fragment_text>[^\s&\?]*\
+            )\
+        )?(\
+            ?P<params>\??(\
+                ?:[^\s]\
+            )*\
+        )?\
     )?\
 )?$".replace(u" ", u"")  # Remove the formatting spaces.
 
