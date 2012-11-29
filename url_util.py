@@ -16,6 +16,14 @@ import re
 # in a varying number of subsections.  For this regex, however, the matching
 # URLs will be limited to http(s) and ftp
 #
+# One fatal flaw in this URL validator, however, is that the parameters at the
+# end of the URL are not validated.  This could be an issue if a bunch of
+# invalid syntax was entered, for example:
+#
+#   http://foo.bar.com/#?&?&?&?&=2?
+#
+# This would likely be invalid on any server, but it is not checked in this
+# regex.
 __regex = u"^\
 (\
     ?P<protocol>(\
