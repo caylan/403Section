@@ -1,6 +1,6 @@
 import unittest
 import codecs
-from url_validator import validate
+from url_validation import is_valid_url
 
 class TestValidUrls(unittest.TestCase):
 
@@ -11,7 +11,7 @@ class TestValidUrls(unittest.TestCase):
 
     def test_all_valid(self):
         for url in self.URLS:
-            self.assertTrue(validate(url), msg=u"Failed URL: {0}".format(url))
+            self.assertTrue(is_valid_url(url), msg=u"Failed URL: {0}".format(url))
 
 if __name__ == '__main__':
     unittest.main()

@@ -11,5 +11,5 @@ __regex = u"^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!
 
 __regex_c = re.compile(__regex, re.U)
 
-def validate(url):
+def is_valid_url(url):
     return bool(re.match(__regex_c, url))
