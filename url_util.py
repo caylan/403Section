@@ -102,24 +102,25 @@ __regex_c = re.compile(__regex, re.U|re.I)  # ignore case; use unicode.
 def is_valid_url(url):
     match = re.match(__regex_c, url)
     return bool(match)
-    
 
 def normalize_url(url):
     '''
-    Accepts a URL, and if the URL is valid, then a normalized URL is returned
-    (normalized according to the brief definition that can be found on RFC3986:
-
-    http://tools.ietf.org/html/rfc3986
+    Accepts a URL, and if the URL is valid, then a normalized URL is returned.
+    In this case, a normalized URL is simply any URL that has been set to lower
+    case for the scheme and authority, and whose fragments and parameters have
+    been removed.
 
     If a URL cannot be normalized because, for example, it is invalid, then None
     will be returned, but we make the assumption that the URL passed is valid
     according to the is_valid_url function.
     '''
-    url = url.lower()
     match = re.match(__regex_c, url)
     string = None
     if match is not None:
-        string = match.group("protocol") + match.group("authority")
+        string = match.group("protocol").lower() + \
+                 match.group("authority").lower()
+        # Preserve the case of a path, as the path is case sensitive unlike the
+        # scheme and authority.
         if match.group("path") is None:
             string += "/"
         else:
