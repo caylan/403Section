@@ -25,5 +25,6 @@ class TestInvalidUrls(unittest.TestCase):
             self.assertFalse(is_valid_url(url), \
                              msg=u"Failed URL: {0}".format(url))
 
+
 if __name__ == '__main__':
     unittest.main()

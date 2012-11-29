@@ -18,7 +18,7 @@ import re
 #
 __regex = u"^\
 (\
-    ?:(\
+    ?P<protocol>(\
         ?P<scheme>https?|ftp\
     )://\
 )(\
@@ -75,16 +75,16 @@ __regex = u"^\
     ?P<port>:\d{2,5}\
 )?(\
     (\
-        (\
-            ?P<path>/[^\s#]*\
+        ?:(\
+            ?P<path>/[^\s#\?&]*\
         )(\
             ?P<fragment>#(\
                 ?P<fragment_text>[^\s&\?]*\
             )\
         )?(\
-            ?P<params>\??(\
-                ?:[^\s]\
-            )*\
+            ?P<params>\??[^&\s]*(\
+                ?:[^\s]*\
+            )\
         )?\
     )?\
 )?$".replace(u" ", u"")  # Remove the formatting spaces.
@@ -93,9 +93,8 @@ __regex_c = re.compile(__regex, re.U|re.I)  # ignore case; use unicode.
 
 def is_valid_url(url):
     match = re.match(__regex_c, url)
-    if match is not None:
-        print(match.group("fragment"))
     return bool(match)
+    
 
 def normalize_url(url):
     '''
@@ -105,7 +104,16 @@ def normalize_url(url):
     http://tools.ietf.org/html/rfc3986
 
     If a URL cannot be normalized because, for example, it is invalid, then None
-    will be returned.
+    will be returned, but we make the assumption that the URL passed is valid
+    according to the is_valid_url function.
     '''
     url = url.lower()
-    return url
+    match = re.match(__regex_c, url)
+    string = None
+    if match is not None:
+        string = match.group("protocol") + match.group("authority")
+        if match.group("path") is None:
+            string += "/"
+        else:
+            string += match.group("path")
+    return string
