@@ -1,6 +1,6 @@
 import unittest
 import codecs
-from url_validation import is_valid_url
+from url_util import is_valid_url
 
 class TestValidUrls(unittest.TestCase):
 
